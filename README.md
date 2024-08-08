@@ -46,3 +46,18 @@ This document outlines the implementation details of the Intuit Assignment, incl
 - **Functionality:**
   - Fetches metadata from these sites using UUIDs (retroID/bbrefID).
   - Originally considered fetching data 
+
+### API
+
+- **Endpoints:**
+  - **GetPlayerByID(string ID):** Fetches data from the DAL and runs scrapers if necessary. Prioritizes LRU cache lookup (O(1)) before querying the database.
+  - **GetAllPlayers(int limit, int page):** Provides pagination for retrieving player data. It is not feasible to return all data at once, so a pagination mechanism is used.
+
+## Trade-Offs
+
+- **In-Memory DB vs. Persistent Store:** Chose in-memory DB for simplicity and speed, but a persistent store (e.g., MySQL, Redis) could be used for more extensive datasets and durability.
+- **Scraper Updates:** Instead of fetching data in real-time, scrapers fetch metadata on demand, which ensures data consistency.
+
+## Future Improvements
+
+- **Custom CsvReader:** Develop a custom CSV reader to enhance performance and scalability for very large files.
