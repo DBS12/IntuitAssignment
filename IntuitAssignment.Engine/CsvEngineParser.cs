@@ -18,7 +18,10 @@ namespace IntuitAssignment.Engine
 
         public async Task ParseData(string dataUrl)
         {
-            await ReadCsvAsync(dataUrl);
+            Task.Run(async () =>
+            {
+                await ReadCsvAsync(dataUrl);
+            });
         }
 
         public async Task ReadCsvAsync(string filePath, int batchSize = 1000)

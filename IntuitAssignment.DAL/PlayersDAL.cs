@@ -5,7 +5,7 @@ namespace IntuitAssignment.DAL
 {
     public class PlayersDAL : IPlayerDAL
     {
-        List<Player> _players = new List<Player>();
+        Dictionary<string, Player> _players = new Dictionary<string, Player>();
 
         public PlayersDAL()
         {
@@ -21,7 +21,7 @@ namespace IntuitAssignment.DAL
         // Get a player by their ID
         public Player GetPlayerByID(string playerID)
         {
-            return null;
+            return _players[playerID];
         }
 
         // Get all players with paging
@@ -32,7 +32,10 @@ namespace IntuitAssignment.DAL
 
         public void InsertPlayers(IEnumerable<Player> players)
         {
-            _players.AddRange(players);
+            foreach (var item in players)
+            {
+                _players[item.PlayerID] = item;
+            }
         }
     }
 }

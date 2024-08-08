@@ -18,9 +18,11 @@ namespace IntuitAssignment.Controllers
         }
 
         [HttpGet("{id}")]
-        public Player GetPlayerByID()
+        public async Task<Player> GetPlayerByID(string id)
         {
-            return null;
+            var player = await _playerApi.GetPlayer(id);
+
+            return player;
         }
 
         [HttpGet]

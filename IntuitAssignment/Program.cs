@@ -15,6 +15,8 @@ namespace IntuitAssignment
             services.AddSwaggerGen();
             services.AddDAL();
             services.AddEngine();
+            services.AddDataFetchersEngine();
+            services.AddApi();
             services.AddHostedService<StartupBackgroundService>();
 
             var app = builder.Build();

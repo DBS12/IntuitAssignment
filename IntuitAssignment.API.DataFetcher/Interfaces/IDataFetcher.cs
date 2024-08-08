@@ -1,7 +1,9 @@
-﻿namespace IntuitAssignment.API.DataFetcher.Interfaces
+﻿using Newtonsoft.Json.Linq;
+
+namespace IntuitAssignment.API.DataFetcher.Interfaces
 {
     public interface IDataFetcher
     {
-        void FetchPlayerData(string uuid);
+        Task<PlayerDetails> ScrapePlayerDetails(string uuid);
     }
 }

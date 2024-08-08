@@ -48,8 +48,8 @@ namespace IntuitAssignments.API.Models
 
         public DateTime? FinalGame { get; set; }
 
-        public JObject RetroMD { get; set; }
+        public object RetroMD { get; set; }
 
-        public JObject BbrefMD { get; set; }
+        public object BbrefMD { get; set; }
     }
 }
