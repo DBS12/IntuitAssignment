@@ -1,5 +1,5 @@
 using IntuitAssignment.Api;
-using IntuitAssignments.API.Models;
+using IntuitAssignment.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntuitAssignment.Controllers

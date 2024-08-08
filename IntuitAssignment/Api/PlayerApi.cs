@@ -1,5 +1,6 @@
 ﻿using IntuitAssignment.Scrapers;
 using IntuitAssignment.DAL.Interfaces;
+using IntuitAssignments.DAL.Models;
 
 namespace IntuitAssignment.Api
 {
@@ -16,11 +17,27 @@ namespace IntuitAssignment.Api
             _playerDal = playerDal;
         }
 
-        public async Task<IntuitAssignments.API.Models.Player> GetPlayer(string playerID)
+        public async Task<API.Models.Player> GetPlayer(string playerID)
         {
             var pDal = _playerDal.GetPlayerByID(playerID);
 
-            var pApi = new IntuitAssignments.API.Models.Player()
+            return await ConvertPlayer(pDal);
+        }
+
+
+        public async Task<IEnumerable<API.Models.Player>> GetAllPlayers(int limit, int page)
+        {
+            var players = _playerDal.GetAllPlayers(limit, page);
+            var playerTasks = players.Select(async pDal => await ConvertPlayer(pDal));
+
+            var convertedPlayers = await Task.WhenAll(playerTasks);
+
+            return convertedPlayers;
+        }
+
+        public async Task<API.Models.Player> ConvertPlayer(Player pDal)
+        {
+            var pApi = new API.Models.Player()
             {
                 PlayerID = pDal.PlayerID,
                 Bats = pDal.Bats,

@@ -25,7 +25,8 @@ namespace IntuitAssignment.Startup
 
         private async Task InitializeTasksAsync(CancellationToken cancellationToken)
         {
-            await _engine.ParseData("C:\\Useful\\p.csv");
+            // Configurable
+            await _engine.ParseData("./ExternalResources\\players.csv");
         }
     }
 }

@@ -1,40 +1,65 @@
 ﻿using IntuitAssignment.DAL.Interfaces;
+using IntuitAssignment.Utils;
 using IntuitAssignments.DAL.Models;
+using System.Collections.Concurrent;
 
 namespace IntuitAssignment.DAL
 {
     public class PlayersDAL : IPlayerDAL
     {
-        Dictionary<string, Player> _players = new Dictionary<string, Player>();
+        // In memory DB -> _players used to fetch data in O(1) for player by ID - This data structure simulate the real DB
+        ConcurrentDictionary<string, Player> _players = new ConcurrentDictionary<string, Player>();
+
+        // In memory DB -> _playersRepo used to fetch ordered data with limit/offset
+        List<Player> _playersRepo = new List<Player>();
+
+        LRUCache<string, Player> lruCache = new LRUCache<string, Player>(5000);
 
         public PlayersDAL()
         {
 
         }
 
-        // Adds a player to the repository
-        public void AddPlayer(Player player)
-        {
-
-        }
-
-        // Get a player by their ID
         public Player GetPlayerByID(string playerID)
         {
-            return _players[playerID];
+            Player player = lruCache.Get(playerID);
+            if (player == null)
+            {
+                player = _players.ContainsKey(playerID) ? _players[playerID] : null;
+                if (player != null)
+                {
+                    lruCache.Put(playerID, player);
+                }
+            }
+
+            return player;
         }
 
-        // Get all players with paging
         public IEnumerable<Player> GetAllPlayers(int limit, int page)
         {
-            return null;
+            return _playersRepo.Take(limit).Skip(page * limit);
         }
 
-        public void InsertPlayers(IEnumerable<Player> players)
+        public void InsertPlayers(IEnumerable<Player> players, int retry = 1)
         {
-            foreach (var item in players)
+            while (retry-- > 0 && !TryInsert(players)) ;
+        }
+
+        public bool TryInsert(IEnumerable<Player> players)
+        {
+            try
             {
-                _players[item.PlayerID] = item;
+                // Assume we have here single MySQL/PG/RedisDB insertion command for all players
+                _playersRepo.AddRange(players);
+                foreach (var p in players)
+                {
+                    _players[p.PlayerID] = p;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

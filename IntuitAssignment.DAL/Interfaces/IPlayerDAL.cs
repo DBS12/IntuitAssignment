@@ -8,6 +8,6 @@ namespace IntuitAssignment.DAL.Interfaces
 
         IEnumerable<Player> GetAllPlayers(int limit, int page);
 
-        void InsertPlayers(IEnumerable<Player> players);
+        void InsertPlayers(IEnumerable<Player> players, int retry = 1);
     }
 }

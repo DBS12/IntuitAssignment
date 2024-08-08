@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace IntuitAssignments.API.Models
+namespace IntuitAssignment.API.Models
 {
     public class Player
     {
