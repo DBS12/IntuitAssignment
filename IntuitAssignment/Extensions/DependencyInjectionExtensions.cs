@@ -1,10 +1,9 @@
 ﻿using IntuitAssignment.Api;
-using IntuitAssignment.API.DataFetcher;
+using IntuitAssignment.Scrapers;
 using IntuitAssignment.DAL;
 using IntuitAssignment.DAL.Interfaces;
 using IntuitAssignment.Engine;
 using IntuitAssignment.Engine.Interfaces;
-using System.Net.NetworkInformation;
 
 namespace IntuitAssignment.Extensions
 {

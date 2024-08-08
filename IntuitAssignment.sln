@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Engine", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.API.Models", "IntuitAssignment.API.Models\IntuitAssignment.API.Models.csproj", "{21735EE3-91E2-412C-9400-7794601FEF00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.API.DataFetcher", "IntuitAssignment.API.DataFetcher\IntuitAssignment.API.DataFetcher.csproj", "{1746BBB5-68B4-4DC5-A38F-B38F11DF003B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Scrapers", "IntuitAssignment.Scrapers\IntuitAssignment.Scrapers.csproj", "{1746BBB5-68B4-4DC5-A38F-B38F11DF003B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.DAL.Models", "IntuitAssignment.DAL.Models\IntuitAssignment.DAL.Models.csproj", "{782AA9CC-EC31-4C2E-BABB-77B1AC2D5AAE}"
 EndProject

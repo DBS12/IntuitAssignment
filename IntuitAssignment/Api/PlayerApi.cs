@@ -1,4 +1,4 @@
-﻿using IntuitAssignment.API.DataFetcher;
+﻿using IntuitAssignment.Scrapers;
 using IntuitAssignment.DAL.Interfaces;
 
 namespace IntuitAssignment.Api

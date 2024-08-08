@@ -1,8 +1,8 @@
 ﻿using HtmlAgilityPack;
-using IntuitAssignment.API.DataFetcher.Interfaces;
+using IntuitAssignment.Scrapers.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace IntuitAssignment.API.DataFetcher
+namespace IntuitAssignment.Scrapers
 {
     public class RetrosheetDataFetcher : IDataFetcher
     {

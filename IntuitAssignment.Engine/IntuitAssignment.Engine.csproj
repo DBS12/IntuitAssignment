@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IntuitAssignment.API.DataFetcher\IntuitAssignment.API.DataFetcher.csproj" />
+    <ProjectReference Include="..\IntuitAssignment.Scrapers\IntuitAssignment.Scrapers.csproj" />
     <ProjectReference Include="..\IntuitAssignment.DAL\IntuitAssignment.DAL.csproj" />
   </ItemGroup>
 

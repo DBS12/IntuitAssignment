@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace IntuitAssignment.API.DataFetcher.Interfaces
+namespace IntuitAssignment.Scrapers.Interfaces
 {
     public interface IDataFetcher
     {
