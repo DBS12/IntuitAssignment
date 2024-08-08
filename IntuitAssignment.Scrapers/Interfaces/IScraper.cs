@@ -2,7 +2,7 @@
 
 namespace IntuitAssignment.Scrapers.Interfaces
 {
-    public interface IDataFetcher
+    public interface IScraper
     {
         Task<PlayerDetails> ScrapePlayerDetails(string uuid);
     }

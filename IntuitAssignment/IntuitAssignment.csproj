@@ -16,4 +16,10 @@
     <ProjectReference Include="..\IntuitAssignment.Engine\IntuitAssignment.Engine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ExternalResources\players.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

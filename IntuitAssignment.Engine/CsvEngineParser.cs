@@ -2,8 +2,8 @@
 using CsvHelper.Configuration;
 using IntuitAssignment.DAL.Interfaces;
 using IntuitAssignment.Engine.Interfaces;
+using IntuitAssignment.Utils;
 using IntuitAssignments.DAL.Models;
-using System.Runtime.CompilerServices;
 
 namespace IntuitAssignment.Engine
 {
@@ -16,15 +16,12 @@ namespace IntuitAssignment.Engine
             _playerDal = playerDal;
         }
 
-        public async Task ParseData(string dataUrl)
+        public async Task ParseData(string path, CancellationToken ct, int batchSize = 1000)
         {
-            Task.Run(async () =>
-            {
-                await ReadCsvAsync(dataUrl);
-            });
+            await ReadCsvAsync(path, batchSize, ct);
         }
 
-        public async Task ReadCsvAsync(string filePath, int batchSize = 1000)
+        public async Task ReadCsvAsync(string filePath, int batchSize, CancellationToken ct)
         {
             using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
             using (var reader = new StreamReader(stream))
@@ -34,22 +31,28 @@ namespace IntuitAssignment.Engine
 
                 while (await csv.ReadAsync())
                 {
-                    var record = csv.GetRecord<Player>();
+                    if (!csv.TryGetRecord<Player>(out var record))
+                    {
+                        continue;
+                    }
                     recordBuffer.Add(record);
 
                     if (recordBuffer.Count >= batchSize)
                     {
-                        // Add to DB and update DB update state to of file to already read: X
-                        _playerDal.InsertPlayers(recordBuffer);
+                        var insertionSucceded = await _playerDal.InsertPlayers(recordBuffer, ct);
                         recordBuffer.Clear();
+
+                        if (!insertionSucceded)
+                        {
+                            // Log DB is not responsible
+                            return;
+                        }
                     }
                 }
 
-                // Add remaining records
                 if (recordBuffer.Any())
                 {
-                    // Add to DB and update DB update state to of file to already read: X
-                    _playerDal.InsertPlayers(recordBuffer);
+                    await _playerDal.InsertPlayers(recordBuffer, ct);
                     recordBuffer.Clear();
                 }
             }

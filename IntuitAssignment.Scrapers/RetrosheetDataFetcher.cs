@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace IntuitAssignment.Scrapers
 {
-    public class RetrosheetDataFetcher : IDataFetcher
+    public class RetrosheetDataFetcher : IScraper
     {
         public async Task<PlayerDetails> ScrapePlayerDetails(string uuid)
         {
@@ -16,29 +16,36 @@ namespace IntuitAssignment.Scrapers
 
         public async Task<PlayerDetails> ScrapePlayerMetadata(string url)
         {
-            var httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
-
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(html);
-
-            var playerMetadata = new PlayerDetails();
-
-            // Locate the table row containing the metadata
-            var metadataRowNode = htmlDocument.DocumentNode.SelectSingleNode("//table/tr[4]/td");
-
-            if (metadataRowNode != null)
+            try
             {
-                var metadataText = metadataRowNode.InnerText;
+                var httpClient = new HttpClient();
+                var html = await httpClient.GetStringAsync(url);
 
-                // Extract bats, throws, height, and weight using regex
-                playerMetadata.Bats = ExtractDetail(metadataText, @"Bat:\s*([^\s]+)");
-                playerMetadata.Throws = ExtractDetail(metadataText, @"Throw:\s*([^\s]+)");
-                playerMetadata.Height = ExtractDetail(metadataText, @"Height:\s*([^\s]+(?:\s[^\s]+)?)");
-                playerMetadata.Weight = ExtractDetail(metadataText, @"Weight:\s*(\d+)");
+                var htmlDocument = new HtmlDocument();
+                htmlDocument.LoadHtml(html);
+
+                var playerMetadata = new PlayerDetails();
+
+                // Locate the table row containing the metadata
+                var metadataRowNode = htmlDocument.DocumentNode.SelectSingleNode("//table/tr[4]/td");
+
+                if (metadataRowNode != null)
+                {
+                    var metadataText = metadataRowNode.InnerText;
+
+                    // Extract bats, throws, height, and weight using regex
+                    playerMetadata.Bats = ExtractDetail(metadataText, @"Bat:\s*([^\s]+)");
+                    playerMetadata.Throws = ExtractDetail(metadataText, @"Throw:\s*([^\s]+)");
+                    playerMetadata.Height = ExtractDetail(metadataText, @"Height:\s*([^\s]+(?:\s[^\s]+)?)");
+                    playerMetadata.Weight = ExtractDetail(metadataText, @"Weight:\s*(\d+)");
+                }
+
+                return playerMetadata;
             }
-
-            return playerMetadata;
+            catch(Exception e)
+            {
+                return null;
+            }
         }
 
         private static string ExtractDetail(string text, string pattern)

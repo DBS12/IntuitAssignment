@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment", "IntuitAssignment\IntuitAssignment.csproj", "{F4B9B6B5-B439-4C58-94E7-571FFC9774B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment", "IntuitAssignment\IntuitAssignment.csproj", "{F4B9B6B5-B439-4C58-94E7-571FFC9774B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.DAL", "IntuitAssignment.DAL\IntuitAssignment.DAL.csproj", "{98E7CD92-5CAD-463F-BEBE-030A9702207D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.DAL", "IntuitAssignment.DAL\IntuitAssignment.DAL.csproj", "{98E7CD92-5CAD-463F-BEBE-030A9702207D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Engine", "IntuitAssignment.Engine\IntuitAssignment.Engine.csproj", "{C7A2D597-9812-41D3-812B-10CCE6B1A21F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.Engine", "IntuitAssignment.Engine\IntuitAssignment.Engine.csproj", "{C7A2D597-9812-41D3-812B-10CCE6B1A21F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.API.Models", "IntuitAssignment.API.Models\IntuitAssignment.API.Models.csproj", "{21735EE3-91E2-412C-9400-7794601FEF00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.API.Models", "IntuitAssignment.API.Models\IntuitAssignment.API.Models.csproj", "{21735EE3-91E2-412C-9400-7794601FEF00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Scrapers", "IntuitAssignment.Scrapers\IntuitAssignment.Scrapers.csproj", "{1746BBB5-68B4-4DC5-A38F-B38F11DF003B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.Scrapers", "IntuitAssignment.Scrapers\IntuitAssignment.Scrapers.csproj", "{1746BBB5-68B4-4DC5-A38F-B38F11DF003B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.DAL.Models", "IntuitAssignment.DAL.Models\IntuitAssignment.DAL.Models.csproj", "{782AA9CC-EC31-4C2E-BABB-77B1AC2D5AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.DAL.Models", "IntuitAssignment.DAL.Models\IntuitAssignment.DAL.Models.csproj", "{782AA9CC-EC31-4C2E-BABB-77B1AC2D5AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Utils", "IntuitAssignment.Utils\IntuitAssignment.Utils.csproj", "{C0BF3E36-8D8B-46F6-9156-5147A5AFCD59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntuitAssignment.Utils", "IntuitAssignment.Utils\IntuitAssignment.Utils.csproj", "{C0BF3E36-8D8B-46F6-9156-5147A5AFCD59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntuitAssignment.Engine.Tests", "IntuitAssignment.Engine.Tests\IntuitAssignment.Engine.Tests.csproj", "{BEEC9BC1-1775-4162-83FC-069F1022DAB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C0BF3E36-8D8B-46F6-9156-5147A5AFCD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0BF3E36-8D8B-46F6-9156-5147A5AFCD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0BF3E36-8D8B-46F6-9156-5147A5AFCD59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEC9BC1-1775-4162-83FC-069F1022DAB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEC9BC1-1775-4162-83FC-069F1022DAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEC9BC1-1775-4162-83FC-069F1022DAB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEC9BC1-1775-4162-83FC-069F1022DAB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

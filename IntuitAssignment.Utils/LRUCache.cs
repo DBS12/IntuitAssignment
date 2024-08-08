@@ -16,7 +16,7 @@
         public TValue Get(TKey key)
         {
             if (!_cache.ContainsKey(key))
-                return default(TValue);
+                return default;
 
             var node = _cache[key];
             _list.Remove(node.node);

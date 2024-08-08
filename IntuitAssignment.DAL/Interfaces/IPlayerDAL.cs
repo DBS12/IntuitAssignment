@@ -4,10 +4,10 @@ namespace IntuitAssignment.DAL.Interfaces
 {
     public interface IPlayerDAL
     {
-        Player GetPlayerByID(string playerID);
+        Task<Player> GetPlayerByID(string playerID);
 
-        IEnumerable<Player> GetAllPlayers(int limit, int page);
+        Task<IEnumerable<Player>> GetAllPlayers(int limit, int page);
 
-        void InsertPlayers(IEnumerable<Player> players, int retry = 1);
+        Task<bool> InsertPlayers(IEnumerable<Player> players, CancellationToken ct, int retry = 1);
     }
 }

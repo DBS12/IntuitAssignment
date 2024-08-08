@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 
 namespace IntuitAssignment.DAL
 {
-    public class PlayersDAL : IPlayerDAL
+    public class InMemPlayersDAL : IPlayerDAL
     {
         // In memory DB -> _players used to fetch data in O(1) for player by ID - This data structure simulate the real DB
         ConcurrentDictionary<string, Player> _players = new ConcurrentDictionary<string, Player>();
@@ -15,12 +15,12 @@ namespace IntuitAssignment.DAL
 
         LRUCache<string, Player> lruCache = new LRUCache<string, Player>(5000);
 
-        public PlayersDAL()
+        public InMemPlayersDAL()
         {
 
         }
 
-        public Player GetPlayerByID(string playerID)
+        public Task<Player> GetPlayerByID(string playerID)
         {
             Player player = lruCache.Get(playerID);
             if (player == null)
@@ -32,17 +32,25 @@ namespace IntuitAssignment.DAL
                 }
             }
 
-            return player;
+            return Task.FromResult(player);
         }
 
-        public IEnumerable<Player> GetAllPlayers(int limit, int page)
+        public Task<IEnumerable<Player>> GetAllPlayers(int limit, int page)
         {
-            return _playersRepo.Take(limit).Skip(page * limit);
+            return Task.FromResult(_playersRepo.Take(limit).Skip(page * limit));
         }
 
-        public void InsertPlayers(IEnumerable<Player> players, int retry = 1)
+        public async Task<bool> InsertPlayers(IEnumerable<Player> players, CancellationToken ct, int retry = 1)
         {
-            while (retry-- > 0 && !TryInsert(players)) ;
+            var succeded = TryInsert(players);
+            while (--retry > 0 && !succeded)
+            {
+                // Wait some time until next try
+                await Task.Delay(1000);
+                succeded = TryInsert(players);
+            }
+
+            return succeded;
         }
 
         public bool TryInsert(IEnumerable<Player> players)

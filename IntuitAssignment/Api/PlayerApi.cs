@@ -19,7 +19,12 @@ namespace IntuitAssignment.Api
 
         public async Task<API.Models.Player> GetPlayer(string playerID)
         {
-            var pDal = _playerDal.GetPlayerByID(playerID);
+            var pDal = await _playerDal.GetPlayerByID(playerID);
+
+            if (pDal == null)
+            {
+                return null;
+            }
 
             return await ConvertPlayer(pDal);
         }
@@ -27,7 +32,7 @@ namespace IntuitAssignment.Api
 
         public async Task<IEnumerable<API.Models.Player>> GetAllPlayers(int limit, int page)
         {
-            var players = _playerDal.GetAllPlayers(limit, page);
+            var players = await _playerDal.GetAllPlayers(limit, page);
             var playerTasks = players.Select(async pDal => await ConvertPlayer(pDal));
 
             var convertedPlayers = await Task.WhenAll(playerTasks);

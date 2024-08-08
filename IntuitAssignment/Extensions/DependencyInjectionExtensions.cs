@@ -11,7 +11,7 @@ namespace IntuitAssignment.Extensions
     {
         public static void AddDAL(this IServiceCollection services) 
         {
-            services.AddSingleton<IPlayerDAL, PlayersDAL>();
+            services.AddSingleton<IPlayerDAL, InMemPlayersDAL>();
         }
 
         public static void AddEngine(this IServiceCollection services) 
