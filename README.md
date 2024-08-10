@@ -61,3 +61,4 @@ This document outlines the implementation details of the Intuit Assignment, incl
 ## Future Improvements
 
 - **Custom CsvReader:** Develop a custom CSV reader to enhance performance and scalability for very large files.
+- **CsvState** state for file reading - In case of un expected crash - We want to save the state of the data we already read
