@@ -19,7 +19,7 @@ namespace IntuitAssignment.Extensions
             services.AddSingleton<IEngineDataParser, CsvEngineParser>();
         }
 
-        public static void AddDataFetchersEngine(this IServiceCollection services)
+        public static void AddScrapers(this IServiceCollection services)
         {
             services
                 .AddSingleton<BaseballDataFetcher>()

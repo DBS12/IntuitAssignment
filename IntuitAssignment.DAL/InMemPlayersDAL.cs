@@ -40,6 +40,11 @@ namespace IntuitAssignment.DAL
             return Task.FromResult(_playersRepo.Take(limit).Skip(page * limit));
         }
 
+        public Task<bool> InsertPlayers(Player player, CancellationToken ct, int retry = 1)
+        {
+            return InsertPlayers(new List<Player>() { player }, ct, retry);
+        }
+
         public async Task<bool> InsertPlayers(IEnumerable<Player> players, CancellationToken ct, int retry = 1)
         {
             var succeded = TryInsert(players);
