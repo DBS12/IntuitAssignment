@@ -2,6 +2,7 @@
 using IntuitAssignment.Utils;
 using IntuitAssignments.DAL.Models;
 using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations;
 
 namespace IntuitAssignment.DAL
 {
@@ -37,7 +38,7 @@ namespace IntuitAssignment.DAL
 
         public Task<IEnumerable<Player>> GetAllPlayers(int limit, int page)
         {
-            return Task.FromResult(_playersRepo.Take(limit).Skip(page * limit));
+            return Task.FromResult(_playersRepo.Skip(page * limit).Take(limit));
         }
 
         public Task<bool> InsertPlayers(Player player, CancellationToken ct, int retry = 1)

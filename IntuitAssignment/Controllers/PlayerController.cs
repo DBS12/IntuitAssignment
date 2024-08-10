@@ -1,5 +1,6 @@
 using IntuitAssignment.Api;
 using IntuitAssignment.API.Models;
+using IntuitAssignments.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntuitAssignment.Controllers
@@ -18,18 +19,32 @@ namespace IntuitAssignment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<Player> GetPlayerByID(string id)
+        public async Task<IActionResult> GetPlayerByID(string id)
         {
             var player = await _playerApi.GetPlayer(id);
 
-            return player;
+            if (player == null)
+                return NotFound();
+
+            return Ok(new GetPlayerResponse()
+            {
+                Player = player
+            });
         }
 
         [HttpGet]
         [Route("getAllPlayers")]
-        public Player GetAllPlayers(int limit, int page)
+        public async Task<IActionResult> GetAllPlayers(int limit, int page)
         {
-            return null;
+            var players = await _playerApi.GetAllPlayers(limit, page);
+
+            if (players == null)
+                return NotFound();
+
+            return Ok(new GetAllPlayersResponse()
+            {
+                Players = players.ToList()
+            });
         }
     }
 }
