@@ -62,3 +62,8 @@ This document outlines the implementation details of the Intuit Assignment, incl
 
 - **Custom CsvReader:** Develop a custom CSV reader to enhance performance and scalability for very large files.
 - **CsvState** state for file reading - In case of un expected crash - We want to save the state of the data we already read
+
+## Running:
+* docker build -t intuit-assignment-dor .
+* docker run -d -p 8080:80 intuit-assignment-dor
+* browse to http://localhost:8080/swagger/index.html - I have enabled swagger to ease the check
