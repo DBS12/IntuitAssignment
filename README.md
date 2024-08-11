@@ -67,3 +67,4 @@ This document outlines the implementation details of the Intuit Assignment, incl
 * docker build -t intuit-assignment-dor .
 * docker run -d -p 8080:80 intuit-assignment-dor
 * browse to http://localhost:8080/swagger/index.html - I have enabled swagger to ease the check
+* Alternatively, pull the docker image "doridor123/intuitassignment" from: https://hub.docker.com/r/doridor123/intuitassignment/tags
