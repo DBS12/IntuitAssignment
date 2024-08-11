@@ -25,8 +25,10 @@ namespace IntuitAssignment.Startup
 
         private async Task InitializeTasksAsync(CancellationToken cancellationToken)
         {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ExternalResources", "players.csv");
+
             // Configurable
-            await _engine.ParseData("./ExternalResources\\players.csv", cancellationToken);
+            await _engine.ParseData(filePath, cancellationToken);
         }
     }
 }
